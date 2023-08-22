@@ -73,3 +73,24 @@ ADDITIONAL:
   	- MINIO_ROOT_USER=admin
   	- MINIO_ROOT_PASSWORD=password
 >minio_access_key, minio_secret_key is deprecated, update in docker-compose.yml files
+
+
+## Weeks 6-9
+
+
+### Major: 
+Redo the project architecture, get rid of `rucio s3` interface, use direct commands:
+
+```sh
+rucio s3 make-bucket user.kmeliush:someuniquename -> rucio bucket create user.mlassnig:/analysis1/temp/
+```
+
+With additional functionality
+```sh
+rucio bucket upload --from localdirectory/ --to user.mlassnig:/analysis1/temp/
+```
+
+### Minor:
+
+```lib/rucio/common/exception.py::216``` - Unable to to load user credentials 
+

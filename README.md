@@ -94,3 +94,41 @@ rucio bucket upload --from localdirectory/ --to user.mlassnig:/analysis1/temp/
 
 ```lib/rucio/common/exception.py::216``` - Unable to to load user credentials 
 
+
+
+## Weeks 9-12:
+List of arguments to set group permissions when uploading files:
+https://boto3.amazonaws.com/v1/documentation/api/latest/reference/customizations/s3.html#boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS
+
+
+```
+s3.upload_file(
+    'FILE_NAME', 'BUCKET_NAME', 'OBJECT_NAME',
+    ExtraArgs={'ACL': 'public-read'}
+)
+```
+
+### Managing cache:
+```
+
+def write_to_cache(key, value):
+    
+    Set a value on a key in a cache.
+
+    :param key: Key that stores the value.
+    :param value: Value to be stored.
+    """
+    key = key.replace(' ', '')
+    REGION.set(key, value)
+
+
+def delete_from_cache(key):
+    """
+    Delete from cache any data stored for the given key
+
+    :param key: Key that stores the value.
+    """
+    key = key.replace(' ', '')
+    REGION.delete(key)
+
+```
